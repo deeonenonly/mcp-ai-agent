@@ -1,0 +1,42 @@
+{
+    "generated_at": "2026-10-19T12:46:05.259389+05:30",
+    "project": "MCP-Enabled AI Testing Agent",
+    "test_results": {
+        "passed": 3,
+        "failed": 1,
+        "failing_test": "test_apply_discount",
+        "expected_value": 180,
+        "actual_value": 190,
+        "pytest_exit_code": 1,
+        "execution_status": "FAILED",
+        "individual_tests": [
+            {
+                "test_id": "tests.test_app::test_calculate_total",
+                "test_name": "test_calculate_total",
+                "status": "PASSED"
+            },
+            {
+                "test_id": "tests.test_app::test_calculate_total_zero_quantity",
+                "test_name": "test_calculate_total_zero_quantity",
+                "status": "PASSED"
+            },
+            {
+                "test_id": "tests.test_app::test_apply_discount",
+                "test_name": "test_apply_discount",
+                "status": "FAILED"
+            },
+            {
+                "test_id": "tests.test_app::test_apply_zero_discount",
+                "test_name": "test_apply_zero_discount",
+                "status": "PASSED"
+            }
+        ]
+    },
+    "ai_diagnosis": "The actual failure is in the `test_apply_discount` test. The test is expecting the result of `apply_discount(200, 10)` to be `180`, but the actual result is `190`. This is because the `apply_discount` function is subtracting `10%` from the original price, which is `200`. The correct calculation would be `200 - (200 * 0.10) = 200 - 20 = 180`.\n\nThe suggested correction is to update the expected result in the `test_apply_discount` test to `180`. This would ensure that the test passes as expected.\n\nHere's the updated expected result:\n```python\n\"expected\": 180,\n```\nThis change would fix the test failure and allow the test to pass.",
+    "verification": {
+        "correction_applied": false,
+        "correction_retested": false,
+        "note": "The client does not automatically modify application files. A proposed correction must be applied and tested separately."
+    },
+    "raw_pytest_output": "AUTHORITATIVE TEST SUMMARY\nPassed: 3\nFailed: 1\nPytest exit code: 1\nExit code 0 means all tests passed.\n\nINDIVIDUAL TEST RESULTS:\ntests.test_app::test_calculate_total | PASSED | test_name=test_calculate_total\ntests.test_app::test_calculate_total_zero_quantity | PASSED | test_name=test_calculate_total_zero_quantity\ntests.test_app::test_apply_discount | FAILED | test_name=test_apply_discount\ntests.test_app::test_apply_zero_discount | PASSED | test_name=test_apply_zero_discount\n\nINDIVIDUAL TEST RESULTS JSON:\n[{\"test_id\": \"tests.test_app::test_calculate_total\", \"test_name\": \"test_calculate_total\", \"status\": \"PASSED\"}, {\"test_id\": \"tests.test_app::test_calculate_total_zero_quantity\", \"test_name\": \"test_calculate_total_zero_quantity\", \"status\": \"PASSED\"}, {\"test_id\": \"tests.test_app::test_apply_discount\", \"test_name\": \"test_apply_discount\", \"status\": \"FAILED\"}, {\"test_id\": \"tests.test_app::test_apply_zero_discount\", \"test_name\": \"test_apply_zero_discount\", \"status\": \"PASSED\"}]\n\nRAW PYTEST OUTPUT:\n..F.                                                                     [100%]\n=================================== FAILURES ===================================\n_____________________________ test_apply_discount ______________________________\ntests/test_app.py:20: in test_apply_discount\n    assert apply_discount(200, 10) == 180\nE   assert 190 == 180\nE    +  where 190 = apply_discount(200, 10)\n=========================== short test summary info ============================\nFAILED tests/test_app.py::test_apply_discount - assert 190 == 180\n1 failed, 3 passed in 0.03s"
+}

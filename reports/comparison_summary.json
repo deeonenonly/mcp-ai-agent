@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-10-19T14:09:42.173565+05:30",
+  "reports_analyzed": 15,
+  "suite_recovery": {
+    "recovery_verified": true,
+    "failure_report": "test_report_20261019_125311_493550.json",
+    "recovery_report": "test_report_20261019_125511_450466.json"
+  },
+  "individual_test_regressions": [
+    {
+      "test_name": "test_apply_discount",
+      "recovery_verified": true,
+      "failure_report": "test_report_20261019_125311_493550.json",
+      "recovery_report": "test_report_20261019_140754_501363.json",
+      "failure_status": "FAILED",
+      "recovery_status": "PASSED"
+    }
+  ]
+}
